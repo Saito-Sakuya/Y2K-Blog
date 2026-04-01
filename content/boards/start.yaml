@@ -1,0 +1,6 @@
+name: "Start"
+slug: start
+color: "#8b7aab"
+icon: "star"
+order: 1
+parent: null

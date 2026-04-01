@@ -1,0 +1,79 @@
+# ==============================================
+#  Y2K Pixel Blog — .gitignore
+# ==============================================
+
+# ── 编译产物 / Binaries ──────────────────────
+*.exe
+*.dll
+*.so
+*.dylib
+/backend/server
+/backend/server.exe
+/backend/importer
+/backend/importer.exe
+
+# ── IDE / 编辑器 ─────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── 环境变量 / Secrets ───────────────────────
+# .env.example 保留（模板），实际配置文件忽略
+.env
+.env.local
+*.env.local
+*.env.production
+
+# ── 操作系统 / OS ────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Docker 数据卷 ────────────────────────────
+pgdata/
+
+# ── Go ──────────────────────────────────────
+/backend/vendor/
+
+# ── Node: 前端 (Next.js) ─────────────────────
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+/frontend/tsconfig.tsbuildinfo
+
+# ── Node: 管理后台 (Vite) ────────────────────
+/admin/node_modules/
+/admin/dist/
+
+# ── SSL 证书缓存 ─────────────────────────────
+/backend/certs/
+certs/
+
+# ── AI Agent 专属指令文件（不对外公开）──────────
+frontend/AGENTS.md
+frontend/CLAUDE.md
+admin/AGENTS.md
+admin/CLAUDE.md
+backend/AGENTS.md
+AGENTS.md
+CLAUDE.md
+
+# ── 内部协作开发文档（不对外公开）──────────────
+# 这些是团队内部的 AI 协作进度文档，不属于公开文档
+ADMIN_PANEL_SPEC.md
+ADMIN_FEATURE_REPORT.md
+API_CONTRACT.md
+BACKEND_STATUS.md
+BACKEND_UPDATE_V1.3.md
+BACKEND_UPDATE_V1.4_SSL.md
+FRONTEND_STATUS.md
+
+# ── 个人博客内容（可选，取消注释以排除）──────────
+# content/ 目录下存放您的私人博文，如不希望公开，取消下面一行的注释
+# content/
+
+# ── 临时文件 ────────────────────────────────
+*.tmp
+*.log
+*.bak

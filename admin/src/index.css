@@ -1,0 +1,102 @@
+@import "98.css";
+
+/* Custom Y2K Pixel Blog Theme Overrides */
+:root {
+  --y2k-dark-purple: #8b7aab;
+  --y2k-light-purple: #c9a4b8;
+  --y2k-bg: #121212; /* Dark mode background */
+}
+
+body {
+  background-color: #008080; /* Classic Win98 desktop color */
+  margin: 0;
+  font-family: 'Pixelated MS Sans Serif', Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Customizing the 98.css title bars with our purple palette */
+.window.y2k-window .title-bar {
+  background: linear-gradient(90deg, var(--y2k-dark-purple), var(--y2k-light-purple));
+}
+
+.window.y2k-window .title-bar-text {
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* Simple flex utilities */
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: 8px; }
+.gap-4 { gap: 16px; }
+.p-2 { padding: 8px; }
+.p-4 { padding: 16px; }
+.m-0 { margin: 0; }
+.mt-4 { margin-top: 16px; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.flex-1 { flex: 1; min-height: 0; }
+.text-center { text-align: center; }
+
+/* Custom Form elements for the Retro look */
+.field-row-stacked {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+.field-row-stacked label {
+  margin-bottom: 4px;
+}
+.field-row-stacked input[type="text"],
+.field-row-stacked input[type="password"],
+.field-row-stacked input[type="number"],
+.field-row-stacked select,
+.field-row-stacked textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.error-text {
+  color: red;
+  margin-top: 4px;
+  font-size: 11px;
+}
+
+.tag-badge {
+  background: var(--y2k-light-purple);
+  color: #000;
+  border: 1px solid #000;
+  padding: 2px 4px;
+  margin-right: 4px;
+  font-size: 11px;
+}
+
+/* Fix double scrollbar buttons in 98.css for newer WebKit browsers */
+::-webkit-scrollbar-button:vertical:start:increment,
+::-webkit-scrollbar-button:vertical:end:decrement,
+::-webkit-scrollbar-button:horizontal:start:increment,
+::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none !important;
+}
+
+/* Fix Vite SVG Data URI encoding issue for 98.css title-bar-controls */
+.title-bar-controls button[aria-label="Minimize"] {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='6' height='2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M0 0h6v2H0z'/%3E%3C/svg%3E");
+}
+.title-bar-controls button[aria-label="Maximize"] {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 0H0v9h9V0zM8 2H1v6h7V2z' fill='%23000'/%3E%3C/svg%3E");
+}
+.title-bar-controls button[aria-label="Close"] {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='8' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0V0z' fill='%23000'/%3E%3C/svg%3E");
+}
