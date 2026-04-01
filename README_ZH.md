@@ -1,10 +1,18 @@
 # Y2K Pixel Blog
 
+**[English](README.md)** | 中文
+
 一个复古像素风博客平台，采用 Windows 98 风格的桌面 UI。用户通过搜索驱动的界面探索内容，文章在粒子动画画布上以可拖拽、可调整大小的窗口形式打开。
 
 基于 Next.js、Go 和 PostgreSQL 构建。支持多域名部署、自动 SSL 证书、中文全文搜索以及完整的后台管理面板。
 
-**[English](README.md)** | 中文
+## 界面演示
+
+### 前端桌面浏览体验
+![前端演示](docs/assets/frontend_demo.webp)
+
+### 基于 98.css 的管理后台
+![后台演示](docs/assets/admin_demo.webp)
 
 ## 架构
 

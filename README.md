@@ -6,6 +6,14 @@ A retro pixel-art blog platform with a Windows 98-inspired desktop UI. Users exp
 
 Built with Next.js, Go, and PostgreSQL. Supports multi-domain deployment, automated SSL certificates, Chinese full-text search, and a full-featured admin panel.
 
+## Demo
+
+### Frontend (Desktop UI)
+![Frontend Demo](docs/assets/frontend_demo.webp)
+
+### Admin Panel (98.css)
+![Admin Demo](docs/assets/admin_demo.webp)
+
 ## Architecture
 
 ```
