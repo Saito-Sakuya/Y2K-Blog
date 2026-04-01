@@ -125,23 +125,38 @@ On first launch, visit the admin panel and follow the setup wizard to create an 
 
 ## Production Deployment
 
+### Quick Deploy (Recommended)
+
+Download the latest release package from [Releases](https://github.com/Saito-Sakuya/Y2K-Blog/releases). No Go or Node.js installation required.
+
 ```bash
-# 1. Configure environment
-cp .env.example .env
-# Edit .env: set JWT_SECRET, DB_PASSWORD, etc.
-# Generate a secret: openssl rand -base64 32
+# 1. Download and extract
+tar -xzf y2k-blog-v*-deploy.tar.gz
 
-# 2. Edit nginx.conf
-# Replace example.com with your actual domains
+# 2. Configure
+cp .env.example .env        # set JWT_SECRET, DB_PASSWORD
+# Edit nginx.conf: replace example.com with your domains
 
-# 3. Build and start all services
-docker compose up -d --build
-
-# 4. Configure domains and SSL
-# Open the admin panel → Settings → Domain & SSL
-# Set frontend/admin domains
-# Choose SSL mode: auto (Let's Encrypt) or manual (PEM upload)
+# 3. Start
+docker compose up -d
 ```
+
+### Build from Source
+
+```bash
+# 1. Clone with submodules
+git clone --recurse-submodules https://github.com/Saito-Sakuya/Y2K-Blog.git
+cd Y2K-Blog
+
+# 2. Configure
+cp .env.example .env        # set JWT_SECRET, DB_PASSWORD
+# Edit nginx.conf: replace example.com with your domains
+
+# 3. Build and start
+docker compose up -d --build
+```
+
+After first launch, visit the admin panel and follow the setup wizard to configure your site.
 
 ### Docker Services
 

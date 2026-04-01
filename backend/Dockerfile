@@ -23,6 +23,7 @@ RUN apk add --no-cache ca-certificates tzdata
 WORKDIR /app
 
 COPY --from=builder /server .
+COPY --from=builder /app/migrations ./migrations
 
 # Create certs cache directory for Let's Encrypt autocert
 RUN mkdir -p /app/certs

@@ -1,0 +1,112 @@
+# Y2K Pixel Blog — Docker Compose (Pre-built Images)
+#
+# Usage:
+#   1. cp .env.example .env  (edit values)
+#   2. docker compose up -d
+#
+# Images are pulled from GitHub Container Registry (ghcr.io).
+# No build tools (Go, Node.js) required on the host.
+
+services:
+  # --- Extract DB migrations from API image ---
+  init-migrations:
+    image: ghcr.io/saito-sakuya/y2k-blog-api:latest
+    container_name: y2k-blog-init
+    entrypoint: ["sh", "-c", "cp -r /app/migrations/* /migrations/"]
+    volumes:
+      - migrations:/migrations
+    restart: "no"
+
+  # --- PostgreSQL ---
+  db:
+    image: postgres:16-alpine
+    container_name: y2k-blog-db
+    restart: unless-stopped
+    depends_on:
+      init-migrations:
+        condition: service_completed_successfully
+    environment:
+      POSTGRES_DB: y2k_blog
+      POSTGRES_USER: ${DB_USER:-blog}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-blog}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-blog} -d y2k_blog"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - internal
+
+  # --- Go API Backend ---
+  api:
+    image: ghcr.io/saito-sakuya/y2k-blog-api:latest
+    container_name: y2k-blog-api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://${DB_USER:-blog}:${DB_PASSWORD:-blog}@db:5432/y2k_blog?sslmode=disable
+      PORT: "8080"
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      AI_API_URL: ${AI_API_URL:-}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_MODEL: ${AI_MODEL:-deepseek-chat}
+      GIN_MODE: release
+      ACME_CACHE_DIR: /app/certs
+    volumes:
+      - certs:/app/certs
+    networks:
+      - internal
+
+  # --- Frontend Blog (Next.js SSR) ---
+  frontend:
+    image: ghcr.io/saito-sakuya/y2k-blog-frontend:latest
+    container_name: y2k-blog-frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    environment:
+      NEXT_PUBLIC_API_URL: ${API_URL:-http://api:8080}
+    networks:
+      - internal
+
+  # --- Admin Panel (Vite SPA) ---
+  admin:
+    image: ghcr.io/saito-sakuya/y2k-blog-admin:latest
+    container_name: y2k-blog-admin
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - internal
+
+  # --- Nginx Reverse Proxy ---
+  nginx:
+    image: nginx:alpine
+    container_name: y2k-blog-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+      - frontend
+      - admin
+    networks:
+      - internal
+
+volumes:
+  pgdata:
+  certs:
+  migrations:
+
+networks:
+  internal:
+    driver: bridge

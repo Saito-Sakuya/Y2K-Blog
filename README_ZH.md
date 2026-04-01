@@ -125,23 +125,38 @@ npm run dev                  # → http://localhost:5173
 
 ## 生产部署
 
+### 快速部署（推荐）
+
+从 [Releases](https://github.com/Saito-Sakuya/Y2K-Blog/releases) 下载最新的部署包，无需安装 Go 或 Node.js。
+
 ```bash
-# 1. 配置环境变量
-cp .env.example .env
-# 编辑 .env：设置 JWT_SECRET、DB_PASSWORD 等
-# 生成密钥：openssl rand -base64 32
+# 1. 下载并解压
+tar -xzf y2k-blog-v*-deploy.tar.gz
 
-# 2. 修改 nginx.conf
-# 将 example.com 替换为实际域名
+# 2. 配置
+cp .env.example .env        # 设置 JWT_SECRET、DB_PASSWORD
+# 编辑 nginx.conf：将 example.com 替换为实际域名
 
-# 3. 构建并启动所有服务
-docker compose up -d --build
-
-# 4. 配置域名和 SSL
-# 打开管理后台 → 设置 → 域名 & SSL
-# 设置前端/后台域名
-# 选择 SSL 模式：auto（Let's Encrypt）或 manual（上传 PEM）
+# 3. 启动
+docker compose up -d
 ```
+
+### 从源码构建
+
+```bash
+# 1. 克隆仓库（含子模块）
+git clone --recurse-submodules https://github.com/Saito-Sakuya/Y2K-Blog.git
+cd Y2K-Blog
+
+# 2. 配置
+cp .env.example .env        # 设置 JWT_SECRET、DB_PASSWORD
+# 编辑 nginx.conf：将 example.com 替换为实际域名
+
+# 3. 构建并启动
+docker compose up -d --build
+```
+
+首次启动后，访问管理后台并按照引导向导配置站点。
 
 ### Docker 服务清单
 
