@@ -125,7 +125,4 @@ CREATE TRIGGER boards_updated_at BEFORE UPDATE ON boards
 CREATE TRIGGER posts_updated_at BEFORE UPDATE ON posts
     FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 
--- Seed: default admin user (password: admin123, bcrypt hash)
-INSERT INTO users (username, password_hash) VALUES
-    ('admin', '$2a$10$9zCLIuZeqI30nihVk72m/eQJKzoOUAOJWqYVdGeqv9JIGChw2VVRS')
-ON CONFLICT (username) DO NOTHING;
+-- No default admin user: the web setup wizard creates the first admin account.

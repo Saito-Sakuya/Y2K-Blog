@@ -26,9 +26,12 @@ api.interceptors.response.use(
       console.warn("Unauthorized API call, redirecting to login...");
       // A simple redirect mechanism; Context handles state, but this is a global fallback
       // Using window.location to redirect, but avoid looping if we're already on /login
-      if (window.location.pathname !== '/login' && window.location.pathname !== '/setup') {
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/setup'
+          && window.location.pathname !== '/admin/login' && window.location.pathname !== '/admin/setup') {
         localStorage.removeItem('adminToken');
-        window.location.href = '/login';
+        // Detect if we're under /admin/ prefix
+        const base = window.location.pathname.startsWith('/admin') ? '/admin/login' : '/login';
+        window.location.href = base;
       }
     }
     return Promise.reject(error);

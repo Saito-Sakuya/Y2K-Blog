@@ -56,12 +56,14 @@ const AppRoutes = () => {
   }
 
   // Redirect to setup if necessary
-  if (needsSetup && window.location.pathname !== '/setup') {
+  const pathname = window.location.pathname;
+  const isSetupPage = pathname === '/setup' || pathname === '/admin/setup';
+  if (needsSetup && !isSetupPage) {
     return <Navigate to="/setup" replace />;
   }
 
   // Redirect to login if not setup but visiting setup
-  if (!needsSetup && window.location.pathname === '/setup') {
+  if (!needsSetup && isSetupPage) {
     return <Navigate to="/login" replace />;
   }
 
@@ -94,7 +96,7 @@ const AppRoutes = () => {
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename={window.location.pathname.startsWith('/admin') ? '/admin' : '/'}>
         <AppRoutes />
       </Router>
     </AuthProvider>

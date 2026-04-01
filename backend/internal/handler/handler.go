@@ -656,6 +656,13 @@ func (h *Handler) GetSiteConfig(c *gin.Context) {
 		return
 	}
 
+	// Check if setup has been completed
+	setupStatus, _ := h.svc.CheckSetupNeeded()
+	isSetup := true
+	if setupStatus != nil && setupStatus.NeedsSetup {
+		isSetup = false
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"siteTitle":       settings.SiteTitle,
 		"siteDescription": settings.SiteDescription,
@@ -663,6 +670,7 @@ func (h *Handler) GetSiteConfig(c *gin.Context) {
 		"siteLicense":     settings.SiteLicense,
 		"siteLicenseUrl":  settings.SiteLicenseURL,
 		"siteFooter":      settings.SiteFooter,
+		"isSetup":         isSetup,
 	})
 }
 
