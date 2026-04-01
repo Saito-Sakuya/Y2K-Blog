@@ -1,10 +1,24 @@
-# Y2K Pixel Blog
+<div align="center">
+  <img src="docs/assets/y982blog_logo.png" alt="Y982Blog Logo" width="160"/>
+  <h1>Y982Blog (Y2K Pixel Blog)</h1>
+  <p>English | <strong>[中文](README_ZH.md)</strong></p>
+  <p><em>Break free from the endless scroll. Welcome back to the cyber-desktop of the Y2K era.</em></p>
+</div>
 
-English | **[中文](README_ZH.md)**
+## Why is it different?
 
-A retro pixel-art blog platform with a Windows 98-inspired desktop UI. Users explore content through a search-driven interface where articles open in draggable, resizable windows on a particle-animated canvas.
+In a sea of identical WordPress templates, Hexo generators, and modern minimalist themes, **Y982Blog** chooses a path of rebellious nostalgia:
 
-Built with Next.js, Go, and PostgreSQL. Supports multi-domain deployment, automated SSL certificates, Chinese full-text search, and a full-featured admin panel.
+🚀 **Reject the Infinite Scroll**: We've completely abandoned the monotonous vertical scrolling of modern web design. Your entire blog is an interactive canvas filled with dynamic particle effects. Every article, photo gallery, and rating board opens as a **fully draggable, resizable Windows 98 window**. Readers can open multiple posts simultaneously and explore your digital garden just like a real operating system!
+
+🔍 **Native Blazing-Fast Search**: No heavy Elasticsearch cluster required! Y982Blog leverages PostgreSQL's latent power, using GIN indexes and the `pg_trgm` extension to deliver instantaneous full-text trigram search. Query via `#tags` or `~fulltext` syntax instantly.
+
+💻 **Built for Performance & Scale**:
+- **Frontend (Next.js 16)**: SSR for flawless SEO, paired with global state management to handle complex desktop Z-index window stacking.
+- **Admin Panel (Vite + 98.css)**: A completely decoupled SPA administration dashboard delivering a pure, unfiltered Win98 visual aesthetic.
+- **Backend (Go 1.23 + Gin)**: A hyper-lightweight, high-concurrency core featuring an onboard zero-config Let's Encrypt automated SSL issuing system for independent frontend and backend domains.
+
+> **Open Source**: Released freely under the [MIT License](LICENSE). We provide the bleeding-edge retro framework—you inject the soul.
 
 ## Demo
 
