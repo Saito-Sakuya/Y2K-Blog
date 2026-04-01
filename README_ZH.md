@@ -8,6 +8,9 @@
 
 ## 界面演示
 
+### 粒子特效与窗口动画
+![粒子系统演示](docs/assets/particle_demo.webp)
+
 ### 前端桌面浏览体验
 ![前端演示](docs/assets/frontend_demo.webp)
 

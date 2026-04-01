@@ -8,6 +8,9 @@ Built with Next.js, Go, and PostgreSQL. Supports multi-domain deployment, automa
 
 ## Demo
 
+### Particle Background & Window Animations
+![Particle System Demo](docs/assets/particle_demo.webp)
+
 ### Frontend (Desktop UI)
 ![Frontend Demo](docs/assets/frontend_demo.webp)
 
