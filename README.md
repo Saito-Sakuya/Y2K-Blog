@@ -125,19 +125,21 @@ On first launch, visit the admin panel and follow the setup wizard to create an 
 
 ## Production Deployment
 
-### Quick Deploy (Recommended)
+### Quick Deploy (Using Pre-built Docker Images)
 
-Download the latest release package from [Releases](https://github.com/Saito-Sakuya/Y2K-Blog/releases). No Go or Node.js installation required.
+We provide pre-built official Docker images hosted on the GitHub Container Registry (`ghcr.io`). We highly recommend this hassle-free method avoiding any Go/Node.js compiling steps:
 
 ```bash
-# 1. Download and extract
+# 1. Download the latest deploy package from the Releases page.
+# It contains the pre-configured docker-compose.yml referencing ghcr.io images.
 tar -xzf y2k-blog-v*-deploy.tar.gz
 
-# 2. Configure
-cp .env.example .env        # set JWT_SECRET, DB_PASSWORD
-# Edit nginx.conf: replace example.com with your domains
+# 2. Configure environment specifics
+cp .env.example .env        # set your JWT_SECRET, DB_PASSWORD
+# Edit nginx.conf: replace example.com with your actual domains
 
-# 3. Start
+# 3. Pull images and Start
+docker compose pull         # automatically pulls api, frontend, admin from ghcr.io
 docker compose up -d
 ```
 

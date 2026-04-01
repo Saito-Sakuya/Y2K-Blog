@@ -125,19 +125,21 @@ npm run dev                  # → http://localhost:5173
 
 ## 生产部署
 
-### 快速部署（推荐）
+### 快速部署（使用预构建 Docker 镜像）
 
-从 [Releases](https://github.com/Saito-Sakuya/Y2K-Blog/releases) 下载最新的部署包，无需安装 Go 或 Node.js。
+我们提供了预先构建好的官方 Docker 镜像，托管于 GitHub Container Registry (`ghcr.io`)。推荐使用下方步骤进行一键部署，免去编译源码的环境配置烦恼：
 
 ```bash
-# 1. 下载并解压
+# 1. 从 Releases 页面下载最新版本的部署包：
+# 包含使用 ghcr.io 镜像预设的 docker-compose.yml、环境变量模版和 Nginx 配置
 tar -xzf y2k-blog-v*-deploy.tar.gz
 
-# 2. 配置
-cp .env.example .env        # 设置 JWT_SECRET、DB_PASSWORD
-# 编辑 nginx.conf：将 example.com 替换为实际域名
+# 2. 修改配置
+cp .env.example .env        # 设置 JWT_SECRET、DB_PASSWORD 等密码
+# 修改 nginx.conf：将其中的 example.com 替换为您实际拥有的域名
 
-# 3. 启动
+# 3. 拉取镜像并启动
+docker compose pull         # 会自动从 ghcr.io 拉取 api, frontend, admin 的镜像
 docker compose up -d
 ```
 
