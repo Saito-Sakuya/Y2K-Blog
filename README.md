@@ -1,19 +1,30 @@
 <div align="center">
-  <img src="docs/assets/y982blog_logo.png" alt="Y982Blog Logo" width="160"/>
+
+<pre>
+ __   _____   ___ ____  ____  _
+ \ \ / / _ \ ( _ )___ \| __ )| | ___   __ _
+  \ V / (_) |/ _ \ __) |  _ \| |/ _ \ / _` |
+   | | \__, | (_) / __/| |_) | | (_) | (_| |
+   |_|   /_/ \___/_____|____/|_|\___/ \__, |
+                                      |___/
+</pre>
+
   <h1>Y982Blog (Y2K Pixel Blog)</h1>
-  <p>English | <strong>[中文](README_ZH.md)</strong></p>
+  <p>English | <strong><a href="README_ZH.md">中文</a></strong></p>
   <p><em>Break free from the endless scroll. Welcome back to the cyber-desktop of the Y2K era.</em></p>
 </div>
+
+A self-hosted blog engine that replaces the conventional page layout with a fully interactive Windows 98-style desktop. Articles, photo galleries, and review boards all open as draggable, stackable windows on a particle-animated canvas.
 
 ## Why is it different?
 
 In a sea of identical WordPress templates, Hexo generators, and modern minimalist themes, **Y982Blog** chooses a path of rebellious nostalgia:
 
-🚀 **Reject the Infinite Scroll**: We've completely abandoned the monotonous vertical scrolling of modern web design. Your entire blog is an interactive canvas filled with dynamic particle effects. Every article, photo gallery, and rating board opens as a **fully draggable, resizable Windows 98 window**. Readers can open multiple posts simultaneously and explore your digital garden just like a real operating system!
+**Reject the Infinite Scroll**: We've completely abandoned the monotonous vertical scrolling of modern web design. Your entire blog is an interactive canvas filled with dynamic particle effects. Every article, photo gallery, and rating board opens as a **fully draggable, resizable Windows 98 window**. Readers can open multiple posts simultaneously and explore your digital garden just like a real operating system!
 
-🔍 **Native Blazing-Fast Search**: No heavy Elasticsearch cluster required! Y982Blog leverages PostgreSQL's latent power, using GIN indexes and the `pg_trgm` extension to deliver instantaneous full-text trigram search. Query via `#tags` or `~fulltext` syntax instantly.
+**Native Blazing-Fast Search**: No heavy Elasticsearch cluster required! Y982Blog leverages PostgreSQL's latent power, using GIN indexes and the `pg_trgm` extension to deliver instantaneous full-text trigram search. Query via `#tags` or `~fulltext` syntax instantly.
 
-💻 **Built for Performance & Scale**:
+**Built for Performance & Scale**:
 - **Frontend (Next.js 16)**: SSR for flawless SEO, paired with global state management to handle complex desktop Z-index window stacking.
 - **Admin Panel (Vite + 98.css)**: A completely decoupled SPA administration dashboard delivering a pure, unfiltered Win98 visual aesthetic.
 - **Backend (Go 1.23 + Gin)**: A hyper-lightweight, high-concurrency core featuring an onboard zero-config Let's Encrypt automated SSL issuing system for independent frontend and backend domains.
