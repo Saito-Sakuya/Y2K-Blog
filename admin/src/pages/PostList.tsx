@@ -62,9 +62,10 @@ export default function PostList() {
   const handlePreview = async (slug: string) => {
     try {
       const res = await api.post(`/admin/preview/${slug}`);
-      const { token, previewUrl } = res.data;
-      // Open the blog frontend preview page in a new tab
-      window.open(previewUrl || `http://localhost:3000/preview/${token}`, '_blank');
+      const { token } = res.data;
+      // Construct preview URL from env or fallback to localhost
+      const frontendBase = (import.meta as any).env?.VITE_FRONTEND_URL || 'http://localhost:3000';
+      window.open(`${frontendBase}/preview/${token}`, '_blank');
     } catch (err) {
       alert('Failed to generate preview token');
     }
